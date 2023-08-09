@@ -16,22 +16,31 @@ public class StudentApp {
 			System.out.println("-----------------------");
 			
 			System.out.println("선택 >>>");
-			int menu = scn.nextInt();
+			int menu = Integer.parseInt(scn.nextLine());
 			switch(menu) {
 			case 1: //이름, 점수 입력
 				Student stu = new Student();
 				System.out.println("이름 입력 >>");
 				stu.name = scn.nextLine();
-				//System.out.println("점수 입력 >>");
-				stu.score = scn.nextInt();
+				System.out.println("점수 입력 >>");
+				stu.score = Integer.parseInt(scn.nextLine());
 				students[idx] = stu;
 				idx ++;
+				break;
 			case 2: //이름을 넣으면 해당하는 점수 출력
-				
-			case 3: //이름, 점수 한번에 출력
-				for(idx=0; idx<students.length; idx++) {
-					System.out.printf("이름은 %s이고 성적은 %d입니다\n",students[idx].name,students[idx].score);
+				System.out.println("이름 입력 >>");
+				String name = scn.nextLine();
+				for(int i=0; i<idx; i++) {
+					if(name.equals(students[i].name)) {
+						System.out.printf("%s의 점수는 %d점 입니다.\n",name, students[i].score);
+					}
 				}
+				break;
+			case 3: //이름, 점수 한번에 출력
+				for(int i=0; i<idx; i++) {
+					System.out.printf("이름: %s, 성적: %d.\n",students[i].name, students[i].score);
+				}
+				break;
 			case 4: run=false; //종료
 			}
 			
