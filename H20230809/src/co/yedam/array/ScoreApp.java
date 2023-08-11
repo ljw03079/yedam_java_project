@@ -14,7 +14,9 @@ public class ScoreApp {
 		Scanner scn = new Scanner(System.in);
 		boolean run = true;
 //		int[] scores = null;
+		Member[] members = null;
 		String[] data = null;
+		int idx = 0;
 		int stuNum = 0;
 		
 //		String[] data = scn.nextLine().split(" "); // hong 88
@@ -35,37 +37,39 @@ public class ScoreApp {
 			switch (menu) {
 			case 1:
 				System.out.print("학생수>");
-				stuNum = Integer.parseInt(scn.nextLine())*2;
-				data = new String[stuNum];
-				System.out.println(data.length);
+				stuNum = Integer.parseInt(scn.nextLine());
+				members = new Member[stuNum];
 				break;
 			case 2:
-				while(true) {
-					System.out.println("학생 수 만큼 이름과 점수를 입력하세요>");
-					data = scn.nextLine().split(" ");
-					if(data.length == stuNum) {
-						break;
-					}else {
-						System.out.println("학생 수 만큼 다시 입력하세요");
+					for(int i=0; i<members.length; i++) {
+						System.out.print("학생 수 만큼 이름과 점수를 입력하세요>");
+						Member mb = new Member();
+						data = scn.nextLine().split(" ");
+						mb.name = data[0];
+						mb.score = Integer.parseInt(data[1]);
+						members[idx] = mb;
+						idx++;
+						for (String elem : data) {
+							System.out.println(elem);
+						}
 					}
-				}
 				break;
 			case 3:
 				System.out.println("점수리스트>");
-				for(String elem : data) {
-					System.out.println(elem);
-				}
+					for(int i=0; i<members.length; i++) {
+						System.out.printf("이름: %s, 점수: %d\n",members[i].name, members[i].score);
+					}
 				break;
 			case 4:
-				int maxData = Integer.parseInt(data[1]);
+				int maxData = members[0].score;
 				int sumData = 0;
-				for(int i=1; i<data.length; i += 2) {
-						if(maxData < Integer.parseInt(data[i])){
-							maxData = Integer.parseInt(data[i]);
+				for(int i=0; i<members.length; i ++) {
+						if(maxData < members[i].score){
+							maxData = members[i].score;
 						}
-						sumData += Integer.parseInt(data[i]);
+						sumData += members[i].score;
 				}
-				double avgData = (double) sumData/(data.length/2);
+				double avgData = (double) sumData/members.length;
 				System.out.printf("최고 점수: %d\n",maxData);
 				System.out.printf("평균 점수: %f\n",avgData);
 				break;

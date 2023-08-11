@@ -10,7 +10,7 @@ public class TodoApp {
 		int idx = 0;
 		String[] data = null;
 		String[] data2 = null;
-
+		String[] data3 = null;
 		//등록/완료/조회(날짜)/미완료/
 
 		while(run) {
@@ -50,13 +50,15 @@ public class TodoApp {
 				break;
 			case 3: //조회(날짜): 0812 -> 입력하면 0812 해당되는 목록 다 출력, 없으면 없다고 출력 
 				System.out.print("조회할 날짜 입력>>");
-				String date = scn.nextLine();
+				data3 = scn.nextLine().split(" ");
 				boolean bool = false;
 				for(int i=0; i<todos.length; i++) {
-					if(todos[i].dueDate.equals(date)) {
-						System.out.printf("순번: %d, 할일: %s, 마감기한: %s, 완료여부:%b \n",
-								todos[i].no, todos[i].todo, todos[i].dueDate, todos[i].done);
-						bool = true;
+					for(int j=0; j<data3.length; j++) {
+						if(todos[i].dueDate.equals(data3[j])) {
+							System.out.printf("순번: %d, 할일: %s, 마감기한: %s, 완료여부:%b \n",
+									todos[i].no, todos[i].todo, todos[i].dueDate, todos[i].done);
+							bool = true;
+						}						
 					}
 				}
 				if(bool == false) {
@@ -64,6 +66,16 @@ public class TodoApp {
 				}
 				break;
 			case 4: //미완료: -> 미완료 목록 출력 / 순번 1,2,4,3,6,5를 넣으면 순번기준으로 목록을 정렬
+				for(int j=0; j<todos.length-1;j++) {
+					for(int i=0; i<todos.length -1; i++) {
+						Todo tmp = new Todo();
+						if(todos[i].no > todos[i+1].no) {
+							tmp = todos[i];
+							todos[i]=todos[i+1];
+							todos[i+1] = tmp;
+						}
+					}					
+				}
 				for(int i=0; i<todos.length; i++) {
 					if(!todos[i].done) {
 						System.out.printf("순번: %d, 할일: %s, 마감기한: %s, 완료여부:%b \n",
@@ -79,8 +91,8 @@ public class TodoApp {
 		
 		//sortSample();
 	}
-	public static void sortSample() { //배열 정렬
-		int[] intAry = {45,23,90,77,12,8}; 
+	public static void sortSample(int[] intAry) { //배열 정렬
+		 
 		//값 비교해서 큰 값이 뒤로 오게끔...tmp라는 곳에 넣어두고 자리 바꿔주기, 5개의 값이 있으니 4번 반복해서 자리 정렬
 		int len = intAry.length-1;
 		for(int j=0; j<len; j++) {
