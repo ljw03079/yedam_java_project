@@ -50,7 +50,7 @@ public class Student {
 			this.score = score;			
 		}
 	}
-	//getter 값을 불러옴, 마우스 오른쪽 -> generate getter 메뉴를 통해 생성 가능
+	//getter 값을 불러옴, 마우스 오른쪽 -> Source -> generate getter 메뉴를 통해 생성 가능
 	public int getStdNo() {
 		return stdNo;
 	}
