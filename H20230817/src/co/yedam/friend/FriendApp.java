@@ -1,5 +1,6 @@
 package co.yedam.friend;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FriendApp {
@@ -15,8 +16,14 @@ public class FriendApp {
 		while (run) {
 			System.out.println("1.추가 2.조회 3.수정 4.삭제 5.종료");
 			System.out.print("선택>> ");
-			menu = scn.nextInt(); // ex) 3번 입력 후 엔터 -> 엔터가 처리가 안됨, next() 또는 nextLine()이 나오면 엔터처리
-			scn.nextLine();
+			try {
+				menu = scn.nextInt(); // ex) 3번 입력 후 엔터 -> 엔터가 처리가 안됨, next() 또는 nextLine()이 나오면 엔터처리
+			} catch (InputMismatchException e) {
+				// System.out.println("메뉴를 다시 선택하세요.");
+				// continue; //반복문에서 아래코드로 실행하지 않고 실행 첫부분으로 이동, switch구문에서 menu = -1에 대한 처리가 있음
+			} finally {
+				scn.nextLine(); // 이 코드가 없으면 엔터키를 처리하려고 계속 반복
+			}
 
 			switch (menu) {
 			case 1:
@@ -50,11 +57,22 @@ public class FriendApp {
 
 	// 등록
 	private void addFriend() {
-		System.out.println("1.학교 2.회사 3.기타");
-		System.out.print("선택>> ");
-		int subMenu = scn.nextInt();
-		scn.nextLine();
-
+		boolean run = true;
+		int subMenu = -1;
+		
+		while (run) {
+			System.out.println("1.학교 2.회사 3.기타");
+			System.out.print("선택>> ");
+			try {
+				subMenu = scn.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("메뉴를 다시 선택하세요.");
+				continue;
+			} finally {
+				scn.nextLine();
+			}
+			run = false;
+		}
 		Friend friend = null;
 		String name = printString("이름입력");
 		String phone = printString("연락처입력");
@@ -68,7 +86,7 @@ public class FriendApp {
 			String dept = printString("부서정보");
 
 			friend = new CompFriend(name, phone, comp, dept);
-		} else {
+		} else if (subMenu == 3){
 			friend = new Friend(name, phone);
 		}
 		//
