@@ -80,7 +80,7 @@ public class FriendApp {
 	}
 
 	private void loadFile() {
-		File file = new File("C:/temp/friendList.txt");
+		File file = new File("C:/temp/friendList.txt");//파일 최종 수정 등 정보를 알 수 있음.
 		Scanner scn = null;
 		try {
 			scn = new Scanner(file);
