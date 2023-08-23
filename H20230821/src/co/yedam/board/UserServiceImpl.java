@@ -30,14 +30,14 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	@Override
-	public boolean checkLogin(User user) {
+	public User checkLogin(User user) {
 		for(int i=0; i<userList.size(); i++) {
 			if(userList.get(i).getUserId().equals(user.getUserId())) {
 				if(userList.get(i).getUserPw().equals(user.getUserPw())) {
-					return true;
+					return userList.get(i);
 				}
 			}
 		}
-		return false;
+		return null;
 	}
 }
