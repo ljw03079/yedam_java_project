@@ -7,7 +7,7 @@ public class Reply implements Serializable{
 	int brdNo;
 	String rpContent;
 	String rpWriter;
-	
+	Reply(){}
 	public Reply(int brdNo, String rpContent, String rpWriter) {
 		super();
 		this.brdNo = brdNo;

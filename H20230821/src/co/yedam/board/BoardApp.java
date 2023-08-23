@@ -11,7 +11,7 @@ public class BoardApp {
 	//BoardService service = new BoardServiceImpl();//파일저장, DB저장 구현 클래스 각각 생성 후 적용
 	BoardService service = new BoardServiceJdbc();
 	UserService uservice = new UserServiceJdbc();
-	ReplyService rservice = new ReplyServiceImpl();
+	ReplyService rservice = new ReplyServiceJdbc();
 	
 	String logId;
 	
