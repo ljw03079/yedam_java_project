@@ -1,8 +1,19 @@
-package co.yedam.board;
+package co.yedam.board.control;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
+import co.yedam.board.service.BoardService;
+import co.yedam.board.service.BoardServiceJdbc;
+import co.yedam.board.service.ReplyService;
+import co.yedam.board.service.ReplyServiceImpl;
+import co.yedam.board.service.ReplyServiceJdbc;
+import co.yedam.board.service.UserService;
+import co.yedam.board.service.UserServiceJdbc;
+import co.yedam.board.vo.Board;
+import co.yedam.board.vo.Reply;
+import co.yedam.board.vo.User;
 
 //요청처리 기능만 담음, 사용자가 보는 화면
 public class BoardApp {

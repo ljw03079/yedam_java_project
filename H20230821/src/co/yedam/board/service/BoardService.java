@@ -1,6 +1,8 @@
-package co.yedam.board;
+package co.yedam.board.service;
 
 import java.util.List;
+
+import co.yedam.board.vo.Board;
 
 //파일저장, DB저장 -> 규칙정해놓으면 해당되는 메소드로 기능구현
 public interface BoardService {

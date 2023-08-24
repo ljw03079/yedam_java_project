@@ -1,10 +1,12 @@
-package co.yedam.board;
+package co.yedam.board.service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+
+import co.yedam.board.vo.User;
 
 public class UserServiceImpl implements UserService {
 	List<User> userList = new ArrayList<>();
